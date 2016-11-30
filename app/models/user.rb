@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  #validates FILL_IN, presence: true    # Replace FILL_IN with the right code.
-  #validates FILL_IN, presence: true    # Replace FILL_IN with the right code.
 	attr_accessor :remember_token, :activation_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -42,13 +40,12 @@ end
    def activate
     update_attribute(:activated,    true)
     update_attribute(:activated_at, Time.zone.now)
-   # update_columns(activated: FILL_IN, activated_at: FILL_IN)
   end
 
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
-
+  
   private
   def downcase_email
       self.email = email.downcase
