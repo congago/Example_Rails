@@ -44,4 +44,4 @@ tone:
 van:
   content: "Dude, this van's, like, rolling probable cause."
   created_at: <%= 4.hours.ago %>
-  user: lana
+  user: lana  
