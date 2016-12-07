@@ -1,0 +1,41 @@
+<% provide(:title, @microposts.user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+    <table class="table">
+    <tbody>
+      <tr class="danger">
+        <td>ID Post :</td>
+        <td><%= @microposts.id%></td>
+      </tr>
+      <tr class="success">
+        <td>Tên user :</td>
+        <td><%=@microposts.user.name%></td>
+      </tr>
+      <tr class="info">
+        <td>Nội dung</td>
+        <td><%=@microposts.content%></td>
+      </tr>
+       <tr class="danger">
+        <td>Ảnh :</td>
+        <td><%= image_tag @microposts.picture.url if @microposts.picture? %></td>
+      </tr>
+    </tbody>
+  </table>
+    </section>
+    <section class="stats">
+      <%= render partial: 'comments/comment.form', locals: { comment: @comments, microposts: @microposts }%>
+    <h3> <%=link_to "Comment wall", comment_path(@comments)%></h3>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h1 align="center">Danh Sách các Bình Luận</h1>
+     <% if @microposts.comments.any? %>
+      <ol class="microposts">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    <% end %>
+  </div>
+   
+</div>

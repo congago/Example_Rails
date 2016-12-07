@@ -1,0 +1,8 @@
+<h1> content :<%= @microposts.content%></h1>
+<%= form_for(@comment) do |f| %>
+  <div class="field">
+  	<h1> content :<%= @microposts.id%></h1>
+    <%= f.text_area :content, placeholder: "Compose new comment..." %>
+    <%= f.hidden_field :id, value: @microposts.id %>
+  <%= f.submit "comment", class: "btn btn-primary" %>
+<% end %>

@@ -27,6 +27,11 @@ module SessionsHelper
       end
     end
   end
+  
+  def current_post
+    @current_post=Micropost.find_by(id: params[:id])
+  end
+ 
 
  def forget(user)
     user.forget

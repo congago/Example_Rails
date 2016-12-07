@@ -13,6 +13,13 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def show
+    @microposts = Micropost.find(params[:id])
+    @comments = @microposts.comments.paginate(page: params[:page])
+    @micropost  = current_user.microposts.build
+    @comment = @micropost.comments.build
+  end
+
   def destroy
     @micropost.destroy
     flash[:success] = "Micropost deleted"
@@ -21,6 +28,11 @@ class MicropostsController < ApplicationController
 
    private
 
+   #def correct_post
+   #  @micropost = Mircopost.find(params[:id])
+   #  redirect_to(root_url) unless current_user?(@micropost)
+   #end
+   
     def micropost_params
       params.require(:micropost).permit(:content, :picture)
     end
