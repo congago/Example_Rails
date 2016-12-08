@@ -6,6 +6,20 @@ class EntriesController < ApplicationController
   end
 
   def show
+    if logged_in? && current_user.following.include?(User.find_by id: 2)
+    @entries = Entry.find(params[:id])
+    @comments = @entries.comments.paginate(page: params[:page])
+    @entry  = current_user.entries.build
+    @comment = @entry.comments.build
+    elsif logged_in?
+    @entries = Entry.find(params[:id])
+    @comments = @entries.comments.paginate(page: params[:page])
+    @entry  = current_user.entries.build
+    @comment = @entry.comments.build 
+    else
+    @entries = Entry.find(params[:id])
+    @comments = @entries.comments.paginate(page: params[:page])
+    end
   end
 
   def create

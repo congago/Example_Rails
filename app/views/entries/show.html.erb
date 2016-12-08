@@ -1,0 +1,46 @@
+<% provide(:title, @entries.user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+    <table class="table">
+    <tbody>
+      <tr class="danger">
+        <td>ID Post :</td>
+        <td><%= @entries.id%></td>
+      </tr>
+      
+      <tr class="success">
+        <td> User post :</td>
+        <td><%=@entries.user.name%></td>
+      </tr>
+
+      <tr class="info">
+        <td>Title :</td>
+        <td><%= @entries.title%></td>
+      </tr>
+
+      <tr class="info">
+        <td>Body</td>
+        <td><%=@entries.body%></td>
+      </tr>
+      
+    </tbody>
+  </table>
+    </section>
+    <%if logged_in?%>
+    <section class="stats">
+      <%= render partial: 'shared/comment.form', locals: { comment: @comments, microposts: @entries }%>
+    </section>
+    <% end %>
+  </aside>
+  <div class="col-md-8">
+    <h1 align="center">List Comment</h1>
+     <% if @entries.comments.any? %>
+      <ol class="entries">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    <% end %>
+  </div>
+   
+</div>
