@@ -3,16 +3,16 @@ class CommentsController < ApplicationController
 	def create
     @current_post = Entry.find_by id: params[:comment][:id] 
     @comment= @current_post.comments.create! content: params[:comment][:content], user_id: current_user.id
-
     if @comment.save
       flash[:success] = "comment created!"
-      redirect_to 'comments#show'
+      redirect_to entry_url(@current_post)
     else
       render 'static_pages/home'
     end
   end
 
   def show
+
   end
 
   def destroy
