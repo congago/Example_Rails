@@ -29,7 +29,7 @@
     </section>
     <%if logged_in? && (current_user.following.include?(User.find_by id: @entries[:user_id]) || current_user?(User.find_by id: @entries[:user_id]))%>
     <section class="stats">
-      <h1><%=(User.find_by id: @entries[:user_id]).name %></h1>
+      <h1><%=current_user.name %></h1>
       <%= render partial: 'shared/comment.form', locals: { comment: @comments, microposts: @entries }%>
     </section>
     <% end %>
